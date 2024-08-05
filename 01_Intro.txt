@@ -1,0 +1,11 @@
+Docker is a kind of a container  ..
+
+its is used for following kind of problem  : 
+
+1) When we make a software as a developer .. it gives no Problem for a individual developer .
+2) But when the development team scales up .. then it starts giving problem like differences starts coming in configutrations of the environ,ment and tools of that first developer
+
+ex : the first dveeloper had nodejs8 , mongodb5 .....  but now after 1-2 years a new dveeloper joins the team and now he\she installs the nodejs and mongodb of latest version ... its will create differnces for the development team .. for the new commerse 
+
+
+To solve this problem we can use DOCKER as a container  .. where we will setup our configuration as a systrem and will share that containeer to the team whoevcer will be employeed for the project
