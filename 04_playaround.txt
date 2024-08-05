@@ -1,0 +1,15 @@
+to run the docker just open it on desktop 
+
+
+Now Open the terminal and Type 
+
+  Note :  type ctrl+d to exit the docker
+>> docker run -it ubuntu    (it will create ubintu image for our container)
+>> docker container ls  ( it will list the containers in our docker image)
+>> docker container ls -a ( it will show the containers in bit details ,, also the closed containers also  )
+
+>> docker start (container_name)   ->  it will start that docker container
+>> docker stop (container_name)   ->  it will stop that docker container
+
+>> docker exec (container_name) ls  ( it will run the docker command for just one go  .. remains without leaving the actual CMD of your Os )
+>> docker exec -it (container_name) bash   ( it will run and execute the command inside that container)

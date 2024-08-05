@@ -1,0 +1,13 @@
+Installation is easy  ,,, juts go to the website named as :: https://www.docker.com/products/docker-desktop/
+
+Sfetr successfullt installling  
+
+open the CMD AND TYPE  :
+
+>> docker 
+
+or 
+
+>> docker -v 
+
+to chekc the successfull installation
