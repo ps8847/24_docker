@@ -13,3 +13,43 @@ Now Open the terminal and Type
 
 >> docker exec (container_name) ls  ( it will run the docker command for just one go  .. remains without leaving the actual CMD of your Os )
 >> docker exec -it (container_name) bash   ( it will run and execute the command inside that container)
+
+>> docker images ( it will list the images )
+
+
+**********************
+
+what if we wnat to install any other image also ? 
+
+go to the hub.docker.com and choose the name of your image u wnat to install and run 
+
+suppose we want to use NodeJs
+>> docker run -it node
+
+it will download and install the nodejs  ... and will open your terminal in repl of Nodejs
+
+
+
+
+*************************
+
+now suppose we want to open the server runnning on docker as localhost : 8000 .. but it will not run in our system then ...  to use them we need to expose that PORT 
+
+we will install this below 
+
+>> docker run -it piyushgargdev/mynodeapp
+
+>> docker run -it p 1025:1025 <imagename (piyushgargdev/mynodeapp)>     ( it means expose the container's 1025 to my machine's 1025 )
+>> docker run -d -p 1025:1025 -p 8085:8085 <imagename (piyushgargdev/mynodeapp)>     ( for multiple ports syntax )
+
+now with postman or browser we will be able to fetch the 9000 port running inside the container
+
+
+
+*************************
+
+
+environomnet variables :
+
+syntax : 
+docker run -it p 1025:1025 piyushgargdev/mynodeapp -e key=value -e key=value piyushgargdev/mynodeapp
