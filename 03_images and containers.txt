@@ -1,7 +1,7 @@
 IMAGES are we can say as a OPERATION SYSTEM OR ANY KIND OF SYSTEM ( manually created / OS) 
 
-Contaienrs are the emopty spaces where the Images Run 
+Containers are the emopty spaces where the Images Run 
 
 Example  :  a window11 is running on my machine  .....  then that widnow11 is IMAGE and my machine is CONTAINER
 
-Here in DOCKER we can create our Custom image  .... as  [my-image-tools] it will contain Nodejs16 + Ubuntu +  mongodb5  ..... So   , i will share this image to my team and will sya them to run this Image on their Contaienrs
+Here in DOCKER we can create our Custom image  .... as  [my-image-tools] it will contain Nodejs16 + Ubuntu +  mongodb5  ..... So   , i will share this image to my team and will sya them to run this Image on their Containers

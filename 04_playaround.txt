@@ -4,7 +4,7 @@ to run the docker just open it on desktop
 Now Open the terminal and Type 
 
   Note :  type ctrl+d to exit the docker
->> docker run -it ubuntu    (it will create ubintu image for our container)
+>> docker run -it ubuntu   (it will create ubintu image for our container)
 >> docker container ls  ( it will list the containers in our docker image)
 >> docker container ls -a ( it will show the containers in bit details ,, also the closed containers also  )
 
@@ -19,9 +19,9 @@ Now Open the terminal and Type
 
 **********************
 
-what if we wnat to install any other image also ? 
+what if we want to install any other image also ? 
 
-go to the hub.docker.com and choose the name of your image u wnat to install and run 
+go to the hub.docker.com and choose the name of your image u want to install and run 
 
 suppose we want to use NodeJs
 >> docker run -it node

@@ -1,0 +1,81 @@
+How to dockeraize a anodejs Application  ?
+
+For that first create a Nodejs application by following steps 
+
+1) create folder docker-node ( any name )
+2) open it on the terminal and type "npm init -y"
+3) install express by "npm i express"
+4) create a main.js file and write the below code there 
+
+    const express = require("express");
+    const app = express();
+
+    const PORT = process.env.PORT || 8000;
+
+    app.get("/", (req, res) => {
+    return res.json({ message: "Hey , i am nodejs in container" });
+    });
+
+    app.listen(PORT, () => console.log(`Server Started at PORT : ${PORT}`));
+
+
+Main Thing Starts From here now : 
+
+5) make a file named as Dockerfile with no extention of it    -> it is a configuration that we can to create its image
+    5.1 )  open that file and write the following script 
+
+        FROM ubuntu          ( base image )
+
+            // Commands to install nodejs 
+        RUN apt-get update 
+        RUN apt-get install -y curl
+        RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+        RUN apt-get update -y
+        RUN apt-get install -y nodejs
+
+            //  commands to copy our application into the image 
+        COPY package.json package.json
+        COPY package-lock.json package-lock.json
+        COPY main.js main.js
+
+            // command to install the nodejs to run the image for our application
+        RUN npm install
+
+            // what should be done when we run the image
+        ENTRYPOINT ["node" , "main.js"]
+
+6)  after creating the file above write this command to execute this image you created 
+    >> docker build -t prince-nodejs ( image name) . (path of DockerFile)
+
+    now it will take some time so wait 
+
+7) now you can go to your ocker dashboard under image section you iwll be able to see your custom image
+
+8) Nowe to run this image write the below command  : 
+    >> docker run -it prince-nodejs
+
+    it will give this output  >> Server Started at PORT : 8000
+
+
+    but it will be not accessible  .. to make it assesible from your systme write this command below for PORT mAPPING  ,, 
+
+    >> docker run -it -P 8000:8000 prince-nodejs
+
+9) NOW IF U REMEMBER WE GAVE THE port FROM ENVIRONMENT VARIABLE .. SO WE CAN PROVIDE THE PORT DYNAMICALLY by this command below :
+
+    >> docker run -it -e PORT=4000 -p 4000:4000 prince-nodejs
+
+    now the output will be >> Server Started at PORT : 4000
+
+
+
+
+
+## Caching of Layers 
+
+Now if u run this command again  : >> docker build -t prince-nodejs ( image name) . (path of DockerFile)
+        it weill be executed within 1-2 seconds only .... because of Cahing of the layers 
+
+        docker cache the steps to make the image  ..  it will only reupload/update the file/folder whioch is updated after the previus image creation
+
+        
