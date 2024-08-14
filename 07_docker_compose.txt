@@ -1,0 +1,43 @@
+sometime we need to use multiple containers  ,, exmaple : in open sorufce contibuton we need to open multiple containers  .....   but there;s probelm fo in which order ?  in which port we need to run those image/contaienr s ?? 
+
+for that there;s soltuon called docker composer ..
+
+
+its aa script kind of thing ... in which we will get the script in which manner thsi container /  bunch of containers will run 
+
+we can create /  update  .  destory multiple containers
+
+to use docker-compose  
+
+
+we need to create the file named as  .....    "docker-compose.yml"
+
+example  :  we want to use postgres with port 5432 with environment variables and also i wnat to install redis with 6379 port then we will use below script in that file.
+
+
+            version: '3.8'
+
+            services:
+            postgres:
+                image : postgres
+                ports:
+                - '5432:5432'
+                environment:
+                POSTGRES_USER: postgres
+                POSTGRES_DB: review
+                POSTGRES_PASSWORD: password
+
+            redis:
+                image: redis
+                ports: 
+                - "6379:6379"
+
+
+    Now to run this script run this command  >> sudo docker compose up     ,,,,  now it will take some time
+
+
+now if u see your docker dashbaor dit will be runninga a Stack named as your folder name and it will be running the postgres and nodejs inside
+
+now if we >> ctrl + c    ( it will stop that runnign stack)
+        >> docker compose down (  it will remove that stack )
+        >> docker compose up -d ( start the stack in background )

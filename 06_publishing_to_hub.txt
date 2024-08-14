@@ -1,0 +1,21 @@
+Got to hub.docker.com 
+
+create a reposistory there (  click repositories >> create repository )
+        enter the name and select public and click create button
+
+        after that you will founfa Command liek below : 
+
+            docker push ps8847/princesh-nodejs:tagname
+
+now go to the nodejs project we made earlier and open it on termianl and type the following command :: 
+
+    docker build -t ps8847/princesh-nodejs .       ( note the image name should exact same as the repository name yopu created on the hub)
+
+
+now enter the command  ,,  docker login and emnetr your usernmae and password
+
+
+after that command  :: docker push ps8847/princesh-nodejs  and wait it will take time
+
+
+Now  , you've deployed your image publically wth the name  "ps8847/princesh-nodejs"  ,, anyone in the world can use your image now
