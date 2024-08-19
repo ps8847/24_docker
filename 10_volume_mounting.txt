@@ -1,0 +1,63 @@
+Understanding Docker Volumes
+When you create a Docker container, it has its own filesystem and storage. This storage is ephemeral, meaning it gets deleted when the container is removed. If you create a file inside the container, it will be lost when the container is deleted. To avoid this problem and ensure data persistence, Docker volumes are used.
+
+Theory
+Docker Volumes: Volumes are a feature in Docker that allow you to persist data. When you use a volume, the data inside the container is stored outside of the container’s filesystem. This way, even if the container is deleted, the data remains intact and can be reused with another container.
+
+Types of Docker Storage:
+
+Volumes: Managed by Docker and stored in a part of the host filesystem.
+Bind Mounts: Links a specific directory on the host to a directory in the container.
+Demonstration
+Step 1: Running a Container Without Volumes
+Run a container:
+
+docker run -it ubuntu
+This command will start an interactive terminal in an Ubuntu container.
+
+Create a file:
+
+touch /home/tempfile.txt
+Exit the container and delete it:
+
+exit
+docker rm <container_id>
+Run the container again and check the file:
+
+docker run -it ubuntu
+ls /home
+You will notice that tempfile.txt is no longer there because the container’s filesystem was deleted.
+
+Step 2: Using Docker Volumes for Persistent Storage
+Create a folder on your local machine:
+
+Example: Desktop/samplefolder
+Run a container with a volume:
+
+docker run -it -v /users/prince/Desktop/samplefolder:/home/abc ubuntu
+This command mounts the local directory samplefolder to the /home/abc directory inside the container.
+Verify the volume:
+
+cd /home
+ls
+cd abc
+mkdir hello-from-docker
+touch index.js
+The above commands will create the hello-from-docker directory and index.js file inside the mounted directory. You can verify these files and folders on your local machine under Desktop/samplefolder.
+Delete the container and re-run:
+
+docker rm <container_id>
+docker run -it -v /users/prince/Desktop/samplefolder:/home/abc busybox
+Even after deleting the previous container, the data remains intact, and you can resume your work by mounting the same directory to a new container.
+Custom Volumes
+You can create your custom volumes using Docker commands:
+
+Create a volume:
+
+docker volume create myvolume
+Mount the volume to a container:
+
+docker run -it -v myvolume:/home/abc ubuntu
+This command uses the custom volume myvolume and mounts it to the /home/abc directory inside the container.
+Summary
+By using Docker volumes, you ensure that important data persists even after containers are deleted. You can mount local directories or create custom Docker-managed volumes for flexibility and convenience.

@@ -1,0 +1,58 @@
+In Docker, there are three major types of drivers that help manage how Docker interacts with storage, networks, and orchestration. Here’s an easy-to-understand breakdown:
+
+1. Storage Drivers
+What They Do: Manage how Docker containers store and access data.
+Types: Some popular storage drivers include overlay2, aufs, and devicemapper.
+Why They Matter: Different storage drivers can affect the speed, efficiency, and stability of your containers. For example, overlay2 is often used because it’s fast and efficient with disk space.
+
+2. Network Drivers
+What They Do: Control how containers communicate with each other, with the Docker host, and with external networks.
+Types: Some common network drivers include bridge, host, and overlay.
+Bridge: The default network driver, which connects containers to the host machine’s network.
+Host: Allows containers to use the host machine’s network directly.
+Overlay: Useful in multi-host setups, allowing containers across different Docker hosts to communicate.
+Why They Matter: Choosing the right network driver can help improve security, performance, and flexibility in how containers connect with each other and with the outside world.
+
+3. Volume Drivers
+What They Do: Manage how data is stored and shared across containers using Docker volumes.
+Types: Docker has its own built-in volume driver, but there are also third-party volume drivers like local, nfs, and cifs that let you use external storage systems.
+Why They Matter: Volume drivers help keep data persistent, meaning it remains even if the container is deleted, and they can improve performance when dealing with large amounts of data.
+These drivers are essential for tailoring Docker to fit the specific needs of your applications, helping you manage storage, network communication, and data persistence effectively.
+
+
+perform : 
+
+we will run a container with  >> docker run -it --name my_container busybox
+
+        now we will ping the google by  : ping google.com      ,,, u will se its connected dot the internet from yopur containe inside
+
+        By Default ITS using BRIDGE driver for networking  ..  means its connecting the container with your network then establishing the connection with your local networking                                                                                                                               
+
+        now open a secondary cmd and type this command  >> docker network inspect bridge  
+                                                            it will show you the contaienrs using bridge network
+
+
+                                                        >> docker network ls ( it will show you the networks available for you)
+
+
+>> docker run -it --network-host busybox(containerName) 
+        it will run the container directtly with your host mahcine without using bridge for networking
+
+
+what will beits beenfit ... ? 
+
+if u remember when we were in bridge mode and run this command  >> docker run -it p 3000:8000 nodejs 
+                                                                    to expose the port into our local network 
+
+but in host mode we not need to do that ..
+
+
+>> docker run -it --network=none busybox
+    it will run but without internet connection
+
+## create custom network 
+
+    >> docker network create -d bridge mynetwork
+
+    now to run this 
+    >> docker run -it --network=mynetwork --name (containername) ubuntu(base image)

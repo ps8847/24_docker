@@ -79,3 +79,46 @@ Now if u run this command again  : >> docker build -t prince-nodejs ( image name
         docker cache the steps to make the image  ..  it will only reupload/update the file/folder whioch is updated after the previus image creation
 
         
+##optimization 
+
+        FROM ubuntu          ( base image )
+
+        RUN apt-get update 
+        RUN apt-get install -y curl
+        RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+        RUN apt-get update -y
+        RUN apt-get install -y nodejs
+
+        COPY package.json /app/package.json
+        COPY package-lock.json /app/package-lock.json
+
+        RUN cd app && npm install
+
+        COPY .. /app/
+
+        ENTRYPOINT ["node" , "main.js"]
+
+    
+now suppose we want to ginore some files or folder then we can create aa .dockerignore file and add that file there just same like .gitignore file
+
+
+#Optimization 2 we can get relief from /app by 
+
+        FROM ubuntu          ( base image )
+
+        RUN apt-get update 
+        RUN apt-get install -y curl
+        RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+        RUN apt-get update -y
+        RUN apt-get install -y nodejs
+
+        WORKDIR /app
+
+        COPY package.json package.json
+        COPY package-lock.json package-lock.json
+
+        RUN cd app && npm install
+
+        COPY ..
+
+        ENTRYPOINT ["node" , "main.js"]
